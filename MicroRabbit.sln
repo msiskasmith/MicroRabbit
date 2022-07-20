@@ -3,9 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{68ECF151-D941-4F5C-9968-A8BCA7234C97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{2BEF7970-C1D2-4EC7-9445-8862F8DC4535}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Bus", "Infrastructure.Bus", "{FCFF455F-62FD-451E-9BE6-50265A6B6297}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.InversionOfControl", "Infrastructure.InversionOfControl", "{D595509E-CFF5-4FFF-869B-5FA3FE763C6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8CC3EB68-0564-427F-80CD-3C135A0CA815}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Domain.Core", "MicroRabbit.Domain.Core\MicroRabbit.Domain.Core.csproj", "{3629C060-1CDF-4F25-97EF-017D396B760B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bus", "Bus", "{AE5F3170-EA1E-4E4F-B448-6AFA6EB492A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{8EDC64EB-3E3F-45C6-8E3C-2C55A354BCF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{E7BAA33E-3353-4382-9D9E-88122BEFC6DD}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3629C060-1CDF-4F25-97EF-017D396B760B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3629C060-1CDF-4F25-97EF-017D396B760B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3629C060-1CDF-4F25-97EF-017D396B760B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3629C060-1CDF-4F25-97EF-017D396B760B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3629C060-1CDF-4F25-97EF-017D396B760B} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
+		{AE5F3170-EA1E-4E4F-B448-6AFA6EB492A5} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
+		{8EDC64EB-3E3F-45C6-8E3C-2C55A354BCF4} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
+		{E7BAA33E-3353-4382-9D9E-88122BEFC6DD} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E09C72B5-9E08-4BE9-BDB1-E1D844FCD392}
