@@ -15,12 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Domain.Core", "MicroRabbit.Domain.Core\MicroRabbit.Domain.Core.csproj", "{3629C060-1CDF-4F25-97EF-017D396B760B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bus", "Bus", "{AE5F3170-EA1E-4E4F-B448-6AFA6EB492A5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{8EDC64EB-3E3F-45C6-8E3C-2C55A354BCF4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{E7BAA33E-3353-4382-9D9E-88122BEFC6DD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,9 +31,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3629C060-1CDF-4F25-97EF-017D396B760B} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
-		{AE5F3170-EA1E-4E4F-B448-6AFA6EB492A5} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
-		{8EDC64EB-3E3F-45C6-8E3C-2C55A354BCF4} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
-		{E7BAA33E-3353-4382-9D9E-88122BEFC6DD} = {2BEF7970-C1D2-4EC7-9445-8862F8DC4535}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E09C72B5-9E08-4BE9-BDB1-E1D844FCD392}
