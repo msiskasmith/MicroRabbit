@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MicroRabbit.Banking.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BankingController : ControllerBase
     {
         private readonly ILogger<BankingController> _logger;
@@ -30,8 +30,8 @@ namespace MicroRabbit.Banking.Api.Controllers
             return Ok(_accountService.GetAccounts());
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] AccountTransfer accountTransfer)
+        [HttpPost("Transfer")]
+        public IActionResult Transfer([FromBody] AccountTransfer accountTransfer)
         {
             _accountService.Transfer(accountTransfer);  
             return Ok(accountTransfer);

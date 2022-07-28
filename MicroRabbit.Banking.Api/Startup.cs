@@ -1,3 +1,4 @@
+using MassTransit;
 using MediatR;
 using MicroRabbit.Banking.Data.Context;
 using MicroRabbit.Infrastructure.InversionOfControl;
@@ -66,6 +67,16 @@ namespace MicroRabbit.Banking.Api
             {
                 endpoints.MapControllers();
             });
+
+            //var bus = Bus.Factory.CreateUsingRabbitMq(config =>
+            //{
+            //    config.Host("localhost");
+
+            //    config.ReceiveEndpoint("temp_queue", c =>
+            //    {
+            //        c.Handler<>
+            //    })
+            //});
         }
     }
 }

@@ -140,7 +140,7 @@ namespace MicroRabbit.Infrastructure.Bus
                         }
                         catch(Exception ex)
                         {
-                            var exceptionMessage = ex.Message;
+                                var exceptionMessage = ex.Message;
                         }
                      }
                 }
