@@ -1,9 +1,13 @@
-﻿using MicroRabbit.Transfer.Application.Interfaces;
+﻿using MicroRabbit.Infrastructure.ClassLibrary;
+using MicroRabbit.Transfer.Application.Interfaces;
 using MicroRabbit.Transfer.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MicroRabbit.Transfer.Api.Controllers
 {
@@ -13,25 +17,33 @@ namespace MicroRabbit.Transfer.Api.Controllers
     {
         private readonly ILogger<TransferController> _logger;
         private readonly ITransferService _transferService;
+        private readonly IDistributedCache _distributedCache;
 
-        public TransferController(ILogger<TransferController> logger, ITransferService transferService)
+        public TransferController(ILogger<TransferController> logger
+            , ITransferService transferService
+            , IDistributedCache distributedCache)
         {
             _logger = logger;
             _transferService = transferService;
+            _distributedCache = distributedCache;
         }
 
         // GET api/Transfer
         [HttpGet]
-        public ActionResult<IEnumerable<TransferLog>> GetTransfer()
+        public async Task<IActionResult> GetTransfer()
         {
-            return Ok(_transferService.GetTransferLogs());
-        }
+            string recordKey = "TransferLogs_" + DateTime.Now.ToString("yyyyMMdd_hhmm");
 
-        //[HttpPost]
-        //public IActionResult Post([FromBody] TransferTransfer transferTransfer)
-        //{
-        //    _transferService.Transfer(transferTransfer);
-        //    return Ok(transferTransfer);
-        //}
+            var transferLogs = await _distributedCache.GetRecordAsync<IEnumerable<TransferLog>>(recordKey);
+
+            if (transferLogs is null)
+            {
+                transferLogs = await _transferService.GetTransferLogsAsync();
+
+                await _distributedCache.SetRecordAsync(recordKey, transferLogs);
+            }
+
+            return Ok(transferLogs);
+        }
     }
 }

@@ -1,19 +1,12 @@
-﻿using MediatR;
-using MicroRabbit.Banking.Application.Interfaces;
+﻿using MicroRabbit.Banking.Application.Interfaces;
 using MicroRabbit.Banking.Application.Services;
 using MicroRabbit.Banking.Data.Context;
 using MicroRabbit.Banking.Data.Repositories;
-using MicroRabbit.Banking.Domain.CommandHandlers;
-using MicroRabbit.Banking.Domain.Commands;
 using MicroRabbit.Banking.Domain.Interfaces;
-using MicroRabbit.Domain.Core.Bus;
-using MicroRabbit.Infrastructure.Bus;
 using MicroRabbit.Transfer.Application.Interfaces;
 using MicroRabbit.Transfer.Application.Services;
 using MicroRabbit.Transfer.Data.Context;
 using MicroRabbit.Transfer.Data.Repositories;
-using MicroRabbit.Transfer.Domain.EventHandlers;
-using MicroRabbit.Transfer.Domain.Events;
 using MicroRabbit.Transfer.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -30,7 +23,7 @@ namespace MicroRabbit.Infrastructure.InversionOfControl
         {
             // Application Services
             services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<ITransferService, TransferService>();   
+            services.AddTransient<ITransferService, TransferService>(); 
 
             // Data
             services.AddTransient<IAccountRepository, AccountRepository>();

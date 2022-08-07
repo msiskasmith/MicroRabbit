@@ -1,6 +1,8 @@
-﻿using MicroRabbit.Transfer.Data.Context;
+﻿using MicroRabbit.DataModels;
+using MicroRabbit.Transfer.Data.Context;
 using MicroRabbit.Transfer.Domain.Interfaces;
 using MicroRabbit.Transfer.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +20,32 @@ namespace MicroRabbit.Transfer.Data.Repositories
             _ctx = ctx;
         }
 
-        public IEnumerable<TransferLog> GetTransferLogs()
+        public async Task<IEnumerable<TransferLog>> GetTransferLogsAsync()
         {
-            return _ctx.TransferLogs;   
+            return await _ctx.TransferLogs.ToListAsync();   
         }
 
-        public void Add(TransferLog transferLog)
+        public async Task<ProcessResponse> AddAsync(TransferLog transferLog)
         {
-            _ctx.TransferLogs.Add(transferLog);
-            _ctx.SaveChanges();
+            ProcessResponse processResponse = new();
+            
+            await _ctx.TransferLogs.AddAsync(transferLog);
+            
+            var numberOfRowsAffected = await _ctx.SaveChangesAsync();
+
+            if(numberOfRowsAffected > 1)
+            {
+                processResponse.Message = "The operation was a success";
+                processResponse.IsErrorOccurred = false;
+            }
+            else
+            {
+                processResponse.Message = "The operation was not a success";
+                processResponse.IsErrorOccurred = true;
+            }
+
+            return processResponse;
+
         }
     }
 }

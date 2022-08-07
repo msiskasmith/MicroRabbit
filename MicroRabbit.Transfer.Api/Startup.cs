@@ -15,9 +15,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MicroRabbit.Domain.Core.Bus;
-using MicroRabbit.Transfer.Domain.Events;
-using MicroRabbit.Transfer.Domain.EventHandlers;
+using MassTransit;
+using MicroRabbit.Transfer.Application.Services;
+using System.Reflection;
+using MicroRabbit.Contracts;
+using MicroRabbit.Workers;
 
 namespace MicroRabbit.Transfer.Api
 {
@@ -45,7 +47,28 @@ namespace MicroRabbit.Transfer.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroRabbit.Banking.Api", Version = "v1" });
             });
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMassTransit(config =>
+            {
+                 
+                config.SetKebabCaseEndpointNameFormatter();
+                config.AddConsumers(Assembly.GetEntryAssembly());
+
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host("localhost", "/", h => {
+                        h.Username("guest");
+                        h.Password("guest");
+
+                        cfg.ConfigureEndpoints(ctx);
+                    });
+                });
+            });
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetConnectionString("Redis");
+                options.InstanceName = "TransferApi_";
+            });
 
             DependencyContainer.RegisterServices(services);
         }
@@ -71,13 +94,6 @@ namespace MicroRabbit.Transfer.Api
                 endpoints.MapControllers();
             });
 
-            ConfigureEventBus(app);
-        }
-
-        private void ConfigureEventBus(IApplicationBuilder app)
-        {
-            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<TransferCreatedEvent, TransferEventHandler>();
         }
     }
 }

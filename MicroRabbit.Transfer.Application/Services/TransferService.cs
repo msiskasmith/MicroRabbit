@@ -1,7 +1,6 @@
 ﻿using MicroRabbit.Transfer.Application.Interfaces;
 using MicroRabbit.Transfer.Domain.Interfaces;
 using MicroRabbit.Transfer.Domain.Models;
-using MicroRabbit.Domain.Core.Bus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +17,9 @@ namespace MicroRabbit.Transfer.Application.Services
         {
             _transferRepository = transferRepository;
         }
-        public IEnumerable<TransferLog> GetTransferLogs()
+        public async Task<IEnumerable<TransferLog>> GetTransferLogsAsync()
         {
-            return _transferRepository.GetTransferLogs();
+            return await _transferRepository.GetTransferLogsAsync();
         }
     }
 }

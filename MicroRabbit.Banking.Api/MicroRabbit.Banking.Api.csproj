@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.0.5" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.5" />
+    <PackageReference Include="MassTransit" Version="8.0.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroRabbit.Contracts\MicroRabbit.Contracts.csproj" />
+    <ProjectReference Include="..\MicroRabbit.Infrastructure.ClassLibrary\MicroRabbit.Infrastructure.ClassLibrary.csproj" />
     <ProjectReference Include="..\MicroRabbit.Infrastructure.InversionOfControl\MicroRabbit.Infrastructure.InversionOfControl.csproj" />
   </ItemGroup>
 

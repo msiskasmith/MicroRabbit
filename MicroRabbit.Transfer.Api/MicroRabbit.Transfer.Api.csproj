@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.0.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
@@ -16,8 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroRabbit.Infrastructure.ClassLibrary\MicroRabbit.Infrastructure.ClassLibrary.csproj" />
     <ProjectReference Include="..\MicroRabbit.Infrastructure.InversionOfControl\MicroRabbit.Infrastructure.InversionOfControl.csproj" />
     <ProjectReference Include="..\MicroRabbit.Transfer.Data\MicroRabbit.Transfer.Data.csproj" />
+    <ProjectReference Include="..\MicroRabbit.Workers\MicroRabbit.Workers.csproj" />
+    <ProjectReference Include="..\MicroRabbit.Worker\MicroRabbit.Workers.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroRabbit.Banking.Application.Models
+namespace MicroRabbit.DataModels
 {
     public class AccountTransfer
     {

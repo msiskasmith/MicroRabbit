@@ -1,6 +1,7 @@
 ﻿using MicroRabbit.Banking.Data.Context;
 using MicroRabbit.Banking.Domain.Interfaces;
 using MicroRabbit.Banking.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace MicroRabbit.Banking.Data.Repositories
         {
             _ctx = ctx;
         }
-        public IEnumerable<Account> GetAccounts()
+        public async Task<IEnumerable<Account>> GetAccountsAsync()
         {
-            return _ctx.Accounts;   
+            return await _ctx.Accounts.ToListAsync();   
         }
     }
 }
